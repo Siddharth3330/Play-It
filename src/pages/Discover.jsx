@@ -6,6 +6,7 @@ import { SongCard } from "../components/SongCard";
 function Discover(){
 
     const isPlayingVal = useRecoilValue(isPlaying);
+    console.log(isPlayingVal)
     const activeSongVal = useRecoilValue(activeSong);
     const topChartVal= useRecoilValueLoadable(topChart);
 
@@ -18,8 +19,9 @@ function Discover(){
 
     return (
         <div className="flex flex-col">
+            <div>{isPlayingVal}</div>
             <h2 className="font-bold text-6xl text-[#A899FA]">
-                Dicover songs
+                {isPlayingVal}
             </h2>
             <div className="flex flex-wrap justify-center sm:justify-start gap-8">
             { 

@@ -3,7 +3,7 @@ import {atom, selector} from "recoil";
 
 export const isPlaying = atom({
     key: "isPlaying",
-    default: false
+    default: 1
 })
 
 export const activeSong = atom({
@@ -18,7 +18,7 @@ export const topChart = atom({
         key: "topChartSelector",
         get: async () => {
             const res = await axios.get("https://shazam.p.rapidapi.com/charts/track", {headers: {
-                'X-RapidAPI-Key': '<API-Key>'
+                'X-RapidAPI-Key': '<API-KEY>'
             }})
             return res.data;
     }})
