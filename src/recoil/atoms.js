@@ -3,12 +3,22 @@ import {atom, selector} from "recoil";
 
 export const isPlaying = atom({
     key: "isPlaying",
-    default: 1
+    default: false
 })
 
 export const activeSong = atom({
     key: "currentSong",
     default: {}
+})
+
+export const currentIndex = atom({
+    key: "currentIndex",
+    default: 0
+})
+
+export const curretSongs = atom({
+    key: "curretSongs",
+    default: []
 })
 
 export const topChart = atom({

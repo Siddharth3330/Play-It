@@ -1,21 +1,34 @@
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
-import { activeSong, isPlaying } from "../recoil/atoms";
+import { activeSong, currentIndex, curretSongs, isPlaying } from "../recoil/atoms";
 import { FaPauseCircle, FaPlayCircle} from 'react-icons/fa';
 
-export function PlayPause({ song }){
-    const activeSongVal = useRecoilValue(activeSong)
-    
+export function PlayPause({ song, i, data }){
+    const [activeSongVal, setActiveSong] = useRecoilState(activeSong)
+    const [currentIndexVal, setCurrentIndex] = useRecoilState(currentIndex)
+    const [currentSongsVal, setCurrentSongs] = useRecoilState(curretSongs)
+
     //Imp lesson useState can only be initailized inside fn component then I can use it in consomised fn as eg fnPlay()
     const [isPlayingVal, setIsPlaying] = useRecoilState(isPlaying)
 
     function fnPause(){
-        //Pause logic here
+        setIsPlaying(false);
+        console.log("pause logic ran and isPlaying updated");
+
     }
 
     function fnPlay(){
-        setIsPlaying(0);
+        setActiveSong(song);
+        setCurrentIndex(i);
+
+        if(data?.properties){
+            console.log("data found");
+            console.log(data);
+            setCurrentSongs(data?.tracks);
+        }
+        
+        setIsPlaying(true);
         console.log("play logic ran and isPlaying updated");
-        console.log(isPlayingVal);
+        
     }
 
     return((song?.title === activeSongVal?.title && isPlayingVal) ?

@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { activeSong, isPlaying } from "../recoil/atoms";
 import { PlayPause } from "./PlayPause";
+import { data } from "autoprefixer";
 
-export function SongCard({song, i}){
+export function SongCard({song, data, i}){
 
     const activeSongVal = useRecoilValue(activeSong);
     
@@ -16,6 +17,8 @@ export function SongCard({song, i}){
                     ${activeSongVal?.title === song.title ? 'flex bg-black bg-opacity-70': 'hidden'}`}>
                     <PlayPause 
                     song = {song}
+                    data = {data}
+                    i = {i}
                     />    
                 </div>
                 <img alt="song_image" src={song.images?.coverart} />

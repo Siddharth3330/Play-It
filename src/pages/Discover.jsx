@@ -14,7 +14,7 @@ function Discover(){
         console.log("loading");
     }
     if(topChartVal.state === "hasValue"){
-        console.log(topChartVal.contents);
+        console.log("hasValue");
     }
 
     return (
@@ -30,7 +30,9 @@ function Discover(){
                     return <SongCard 
                             key={song.key}
                             song={song}
-                            i={i}/>    
+                            i={i}
+                            data= {topChartVal.contents}
+                            />    
                 }) 
             : ""
             }
