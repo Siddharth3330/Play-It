@@ -2,6 +2,7 @@ import { useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { activeSong, isPlaying, topChart } from "../recoil/atoms";
 import { data } from "autoprefixer";
 import { SongCard } from "../components/SongCard";
+import { SongPlayer } from "../components/SongPlayer/SongPlayer";
 
 function Discover(){
 
@@ -19,9 +20,8 @@ function Discover(){
 
     return (
         <div className="flex flex-col">
-            <div>{isPlayingVal}</div>
             <h2 className="font-bold text-6xl text-[#A899FA]">
-                {isPlayingVal}
+                Discover
             </h2>
             <div className="flex flex-wrap justify-center sm:justify-start gap-8">
             { 
@@ -36,6 +36,13 @@ function Discover(){
                 }) 
             : ""
             }
+            </div>
+            <div>
+            { 
+            topChartVal.state === "hasValue" ?
+                <SongPlayer song= {topChartVal.contents?.tracks[0]}/>
+            : ""
+            }    
             </div>
         </div>
     ) 
