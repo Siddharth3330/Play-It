@@ -28,7 +28,7 @@ export const topChart = atom({
         key: "topChartSelector",
         get: async () => {
             const res = await axios.get("https://shazam.p.rapidapi.com/charts/track", {headers: {
-                'X-RapidAPI-Key': '<API-KEY>'
+                'X-RapidAPI-Key': 'API-KEY'
             }})
             return res.data;
     }})

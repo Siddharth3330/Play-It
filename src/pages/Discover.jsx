@@ -40,7 +40,7 @@ function Discover(){
             <div>
             { 
             topChartVal.state === "hasValue" ?
-                <SongPlayer song= {topChartVal.contents?.tracks[0]}/>
+                <SongPlayer song= {topChartVal.contents?.tracks[1]}/>
             : ""
             }    
             </div>
