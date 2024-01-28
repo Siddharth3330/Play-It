@@ -5,7 +5,13 @@ export const volume = atom({
     default: 1
 })
 
-export const seek = atom({
-    key: "seek",
+export const seekTime = atom({
+    key: "seekTime",
     default: 0
 })
+
+export const songTime = atom({
+    key: "songTime",
+    default: 0
+})
+
