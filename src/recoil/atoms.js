@@ -29,7 +29,7 @@ export const topChart = atom({
       const res = await axios.get(
         "https://shazam.p.rapidapi.com/charts/track",
         {
-          headers: {"X-RapidAPI-Key": "API-KEY",},
+          headers: {"X-RapidAPI-Key": "API-KEYS",},
         }
       );
       return res.data;
