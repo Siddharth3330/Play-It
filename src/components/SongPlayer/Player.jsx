@@ -23,7 +23,7 @@ export function Player({song}){
         <div className="flex flex-row">
             <button onClick={()=>{
                 setVolume(0.25);
-            }}>Make Vol 0.25</button>
+            }}>Update Vol 0.25</button>
             <audio 
             ref={audioRef}
             controls
