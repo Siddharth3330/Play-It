@@ -10,7 +10,7 @@ export function SeekBar(){
         <div>
             <button onClick={()=>{setSeekTime(songTimeVal -5)}}>-</button>
             <p></p>
-            <input type="range" min="0" step="any" value={songTimeVal} max="90" onInput={(event)=>{setSeekTime(event.target.value)}}></input>
+            <input type="range" min="0" step="any" max="90" value={songTimeVal} onInput={(event)=>{setSeekTime(event.target.value)}}></input>
             <p></p>
             <button onClick={()=>{setSeekTime(songTimeVal +5)}}>+</button>
         </div>
