@@ -2,6 +2,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { seekTime, volume, songTime } from "../../recoil/songPlayerAtoms"
 import { useEffect, useRef } from "react";
 import { VolumeBar } from "./VolumeBar";
+import { isPlaying } from "../../recoil/atoms";
 
 export function Player({song}){
 
@@ -9,15 +10,27 @@ export function Player({song}){
     const [volumeVal, setVolume] = useRecoilState(volume);
     const setSongTime = useSetRecoilState(songTime);
     const seekVal = useRecoilValue(seekTime);
+    const isPlayingVal = useRecoilValue(isPlaying);
 
-  useEffect(() => {
-    audioRef.current.volume = volumeVal;
-  }, [volumeVal]);
+    useEffect(() => {
+        audioRef.current.volume = volumeVal;
+    }, [volumeVal]);
 
     useEffect(()=> {
         audioRef.current.currentTime = seekVal; 
-    }, [seekVal])
+        console.log("inside useEffect in seekBar")
+    }, [seekVal]);
 
+    useEffect(() => {
+        if(isPlayingVal){
+            audioRef.current.play();
+            console.log("inside useEffect in play")
+        }
+        else{
+            audioRef.current.pause();
+            console.log("inside useEffect in pause")
+        }
+    }, [isPlayingVal])
     
     return(
         <div className="flex flex-row">

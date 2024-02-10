@@ -3,7 +3,7 @@ import { atom, selector } from "recoil";
 
 export const isPlaying = atom({
   key: "isPlaying",
-  default: false,
+  default: true,
 });
 
 export const activeSong = atom({
