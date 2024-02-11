@@ -6,8 +6,7 @@ import { SongPlayer } from "../components/SongPlayer/SongPlayer";
 
 function Discover(){
 
-    const isPlayingVal = useRecoilValue(isPlaying);
-    console.log(isPlayingVal)
+    
     const activeSongVal = useRecoilValue(activeSong);
     const topChartVal= useRecoilValueLoadable(topChart);
 

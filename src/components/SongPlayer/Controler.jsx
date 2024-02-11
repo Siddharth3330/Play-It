@@ -1,17 +1,42 @@
 import { FaPlayCircle, FaPauseCircle, FaSadCry } from "react-icons/fa";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { isPlaying } from "../../recoil/atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { activeSong, currentIndex, curretSongs, isPlaying } from "../../recoil/atoms";
+import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 
 export function Controler(){
 
     const [isPlayingVal, setIsPlaying]= useRecoilState(isPlaying);
+    const currentSongsVal = useRecoilValue(curretSongs);
+    const currentIndexVal = useRecoilValue(currentIndex);
+    const [activeSongVal, setActiveSongVal] = useRecoilState(activeSong);
     //console.log("Is Playing = "+isPlayingVal)
 
+    function nextPlay(){
+        setIsPlaying(false);
+        setActiveSongVal(currentSongsVal[(currentIndex+1) % currentSongsVal.length]);
+        setIsPlaying(true);
+    }
+
+    function prevPlay(){
+        setIsPlaying(false);
+        if(currentIndex === 0){
+            setActiveSongVal(currentSongsVal[currentSongsVal.length - 1]);
+        }
+        else{
+            setActiveSongVal(currentSongsVal[currentIndex-1]);
+        }
+        setIsPlaying(true);
+        console.log("prev song clicked");
+        console.log(activeSongVal)
+    }
 
     return(
-        <div>{ isPlayingVal ? <FaPauseCircle onClick={() => setIsPlaying(false)}></FaPauseCircle> :
+        <div>
+            {currentSongsVal.length && <MdSkipPrevious onClick={prevPlay}/>}
+            { isPlayingVal ? <FaPauseCircle onClick={() => setIsPlaying(false)}></FaPauseCircle> :
             <FaPlayCircle onClick={() => setIsPlaying(true)}></FaPlayCircle>
-            }    
+            }
+            {currentSongsVal.length && <MdSkipNext onClick={nextPlay}/>}    
         </div>
     )
 }

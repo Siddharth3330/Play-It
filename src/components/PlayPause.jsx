@@ -7,7 +7,7 @@ export function PlayPause({ song, i, data }){
     const [currentIndexVal, setCurrentIndex] = useRecoilState(currentIndex)
     const [currentSongsVal, setCurrentSongs] = useRecoilState(curretSongs)
 
-    //Imp lesson useState can only be initailized inside fn component then I can use it in consomised fn as eg fnPlay()
+    //Imp lesson useState can only be initailized inside fn component then I can use it in customised fn as eg fnPlay()
     const [isPlayingVal, setIsPlaying] = useRecoilState(isPlaying)
 
     function fnPause(){
