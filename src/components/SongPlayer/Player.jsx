@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { seekTime, volume, songTime } from "../../recoil/songPlayerAtoms"
 import { useEffect, useRef } from "react";
 import { VolumeBar } from "./VolumeBar";
-import { isPlaying } from "../../recoil/atoms";
+import { activeSong, isPlaying } from "../../recoil/atoms";
 
 export function Player({song}){
 
@@ -11,6 +11,7 @@ export function Player({song}){
     const setSongTime = useSetRecoilState(songTime);
     const seekVal = useRecoilValue(seekTime);
     const isPlayingVal = useRecoilValue(isPlaying);
+    const activeSongVal = useRecoilValue(activeSong);
 
     useEffect(() => {
         audioRef.current.volume = volumeVal;
@@ -21,16 +22,20 @@ export function Player({song}){
         console.log("inside useEffect in seekBar")
     }, [seekVal]);
 
-    useEffect(() => {
-        if(isPlayingVal){
-            audioRef.current.play();
-            console.log("inside useEffect in play")
-        }
-        else{
-            audioRef.current.pause();
-            console.log("inside useEffect in pause")
-        }
-    }, [isPlayingVal])
+    
+    if(audioRef.current){
+            if(isPlayingVal){
+                audioRef.current.play();
+                console.log("inside useEffect in play")
+                console.log(audioRef.current);
+                console.log(activeSongVal?.hub?.actions[1]?.uri);
+            }
+            else{
+                audioRef.current.pause();
+                console.log("inside useEffect in pause")
+            }
+    }
+    
     
     return(
         <div className="flex flex-row">
@@ -39,8 +44,7 @@ export function Player({song}){
             }}>Update Vol 0.25</button>
             <audio 
             ref={audioRef}
-            controls
-            src={song?.hub?.actions[1]?.uri}
+            src={ activeSongVal?.hub ? activeSongVal?.hub?.actions[1]?.uri : activeSongVal?.attributes?.previews[0]?.url}
             onTimeUpdate={(event)=>{setSongTime(event.target.currentTime)}}></audio>
             <VolumeBar></VolumeBar>
         </div>

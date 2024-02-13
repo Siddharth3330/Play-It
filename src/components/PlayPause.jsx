@@ -17,6 +17,7 @@ export function PlayPause({ song, i, data }){
     }
 
     function fnPlay(){
+        //setIsPlaying(false);
         setActiveSong(song);
         setCurrentIndex(i);
 
